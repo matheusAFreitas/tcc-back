@@ -19,11 +19,7 @@ class CreateUserService {
       throw new AppError('Email addres already used', 400);
     }
 
-    const checkPassword = userPasswordValidator(password);
-
-    if (checkPassword === false) {
-      throw new AppError('the password is not long enough', 400);
-    }
+    userPasswordValidator(password);
 
     const hashedPassword = await hash(password, 8);
 

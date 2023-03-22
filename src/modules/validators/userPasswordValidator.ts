@@ -1,10 +1,10 @@
 import AppError from '../../shared/errors/AppError';
 
-function userPasswordValidator(password: string): boolean {
+function userPasswordValidator(password: string) {
   const checkPassword = password;
 
   if (checkPassword.length < 8) {
-    return false;
+    throw new AppError('the password is not long enough', 400);
   }
 }
 
