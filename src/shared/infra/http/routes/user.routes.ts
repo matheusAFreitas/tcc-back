@@ -23,4 +23,6 @@ userRoutes.post('/', async (request, response) => {
   }
 });
 
+userRoutes.get('/', (request, response) => {});
+
 export default userRoutes;

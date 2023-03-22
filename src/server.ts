@@ -1,8 +1,10 @@
 import 'express-async-errors';
-import routes from './shared/infra/http/routes';
+
 import cors from 'cors';
 import express from 'express';
+
 import connection from './typeorm';
+import routes from './shared/infra/http/routes';
 
 const app = express();
 

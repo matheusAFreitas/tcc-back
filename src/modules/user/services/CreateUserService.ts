@@ -1,10 +1,11 @@
+import { v4 } from 'uuid';
 import { hash } from 'bcryptjs';
 import { Router } from 'express';
 import { getRepository } from 'typeorm';
+
+import User from '../typeorm/entities/userEntity';
 import AppError from '../../../shared/errors/AppError';
 import { IUserRequest } from '../interfaces/IUserRequest';
-import User from '../typeorm/entities/userEntity';
-import { v4 } from 'uuid';
 import userPasswordValidator from '../../validators/userPasswordValidator';
 
 const userRoutes = Router();
