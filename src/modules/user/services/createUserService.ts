@@ -5,6 +5,7 @@ import AppError from '../../../shared/errors/AppError';
 import { IUserRequest } from '../interfaces/IUserRequest';
 import User from '../typeorm/entities/userEntity';
 import { v4 } from 'uuid';
+import userPasswordValidator from '../../validators/userPasswordValidator';
 
 const userRoutes = Router();
 
@@ -16,6 +17,12 @@ class CreateUserService {
 
     if (checkUserExists) {
       throw new AppError('Email addres already used', 400);
+    }
+
+    const checkPassword = userPasswordValidator(password);
+
+    if (checkPassword === false) {
+      throw new AppError('the password is not long enough', 400);
     }
 
     const hashedPassword = await hash(password, 8);
