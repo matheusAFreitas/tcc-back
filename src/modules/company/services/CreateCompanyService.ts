@@ -1,9 +1,9 @@
 import { v4 } from 'uuid';
-
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
-import AppError from '../../../shared/errors/AppError';
 import { ICompanyRequest } from '../interfaces/ICompanyRequest';
+
+import AppError from '../../../shared/errors/AppError';
 import Company from '../typeorm/entities/companyEntity';
 import companyPasswordValidator from '../validator/companyPasswordValidator';
 
@@ -37,3 +37,5 @@ class CreateCompanyService {
     return company;
   }
 }
+
+export default CreateCompanyService;

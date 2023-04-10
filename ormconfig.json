@@ -5,7 +5,10 @@
   "username": "postgres",
   "password": "docker",
   "database": "tcc-back",
-  "entities": ["./src/modules/user/typeorm/entities/*.ts"],
+  "entities": [
+    "./src/modules/user/typeorm/entities/*.ts",
+    "./src/modules/company/typeorm/entities/*.ts"
+  ],
   "migrations": ["./src/typeorm/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/typeorm/migrations/"
