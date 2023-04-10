@@ -1,4 +1,4 @@
-import User from '../typeorm/entities/userEntity';
+import User from '../typeorm/entities/UserEntity';
 
 export interface IAuthenticateUserRequest {
   email: string;

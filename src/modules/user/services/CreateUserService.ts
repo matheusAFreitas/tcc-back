@@ -1,14 +1,11 @@
 import { v4 } from 'uuid';
 import { hash } from 'bcryptjs';
-import { Router } from 'express';
 import { getRepository } from 'typeorm';
 
-import User from '../typeorm/entities/userEntity';
+import User from '../typeorm/entities/UserEntity';
 import AppError from '../../../shared/errors/AppError';
 import { IUserRequest } from '../interfaces/IUserRequest';
 import userPasswordValidator from '../../validators/userPasswordValidator';
-
-const userRoutes = Router();
 
 class CreateUserService {
   async execute({ name, email, password }: IUserRequest): Promise<User> {

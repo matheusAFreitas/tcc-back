@@ -8,7 +8,7 @@ import {
 } from '../interfaces';
 
 import authConfig from '../../../config/auth';
-import User from '../typeorm/entities/userEntity';
+import User from '../typeorm/entities/UserEntity';
 import AppError from '../../../shared/errors/AppError';
 
 class AuthenticateUserService {
