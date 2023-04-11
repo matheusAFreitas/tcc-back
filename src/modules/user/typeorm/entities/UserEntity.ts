@@ -12,6 +12,9 @@ class User {
   email: string;
 
   @Column()
+  companyName: string;
+
+  @Column()
   password: string;
 }
 

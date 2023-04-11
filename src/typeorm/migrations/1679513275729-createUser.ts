@@ -28,6 +28,10 @@ export default class CreateUsers1626807968581 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'companyName',
+            type: 'varchar',
+          },
+          {
             name: 'isAdmin',
             type: 'boolean',
             default: false,

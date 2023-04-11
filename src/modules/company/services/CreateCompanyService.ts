@@ -15,7 +15,9 @@ class CreateCompanyService {
   }: ICompanyRequest): Promise<Company> {
     const companyRepository = getRepository(Company);
 
-    const checkCompanyExists = companyRepository.findOne({ where: { cnpj } });
+    const checkCompanyExists = await companyRepository.findOne({
+      where: { cnpj },
+    });
 
     if (checkCompanyExists) {
       throw new AppError('Company already exists', 400);
