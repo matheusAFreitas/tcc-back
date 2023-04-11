@@ -2,11 +2,16 @@ import { v4 } from 'uuid';
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
 
+import {
+  checkUserExist,
+  checkCompanyNameExistsValidator,
+} from '../../validators';
+
+import { IUserRequest } from '../interfaces';
+
 import User from '../typeorm/entities/UserEntity';
-import AppError from '../../../shared/errors/AppError';
-import { IUserRequest } from '../interfaces/IUserRequest';
-import userPasswordValidator from '../../validators/userPasswordValidator';
 import Company from '../../company/typeorm/entities/companyEntity';
+import userPasswordValidator from '../../validators/userPasswordValidator';
 
 class CreateUserService {
   async execute({
@@ -18,19 +23,8 @@ class CreateUserService {
     const userRepository = getRepository(User);
     const companyRepository = getRepository(Company);
 
-    const checkUserExists = await userRepository.findOne({ where: { email } });
-
-    if (checkUserExists) {
-      throw new AppError('Email addres already used', 400);
-    }
-
-    const checkCompanyExists = await companyRepository.findOne({
-      where: { companyName },
-    });
-
-    if (!checkCompanyExists) {
-      throw new AppError('Company does not exist', 400);
-    }
+    await checkUserExist(email);
+    await checkCompanyNameExistsValidator(companyName);
 
     userPasswordValidator(password);
 

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import userRoutes from './createUser.routes';
+import userRoutes from './user.routes';
 import sessionsRouter from './session.routes';
 
 const userRoutesModule = Router();

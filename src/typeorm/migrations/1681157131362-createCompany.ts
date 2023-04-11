@@ -27,6 +27,10 @@ export class createCompany1681157131362 implements MigrationInterface {
             name: 'password',
             type: 'varchar',
           },
+          {
+            name: 'availableSeats',
+            type: 'int',
+          },
         ],
       })
     );

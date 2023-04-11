@@ -6,14 +6,15 @@ const companyRoutes = Router();
 
 companyRoutes.post('/', async (request, response) => {
   try {
-    const { companyName, cnpj, password } = request.body;
+    const { companyName, cnpj, password, availableSeats } = request.body;
 
     const createCompany = new CreateCompanyService();
 
     const company = await createCompany.execute({
-      companyName,
       cnpj,
       password,
+      companyName,
+      availableSeats,
     });
 
     delete company.password;

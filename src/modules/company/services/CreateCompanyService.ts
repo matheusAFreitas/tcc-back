@@ -1,27 +1,21 @@
 import { v4 } from 'uuid';
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
-import { ICompanyRequest } from '../interfaces/ICompanyRequest';
+import { ICompanyRequest } from '../interfaces';
 
-import AppError from '../../../shared/errors/AppError';
 import Company from '../typeorm/entities/companyEntity';
-import companyPasswordValidator from '../validator/companyPasswordValidator';
+import { companyPasswordValidator, checkCompanyExists } from '../validator';
 
 class CreateCompanyService {
   async execute({
-    companyName,
     cnpj,
     password,
+    companyName,
+    availableSeats,
   }: ICompanyRequest): Promise<Company> {
     const companyRepository = getRepository(Company);
 
-    const checkCompanyExists = await companyRepository.findOne({
-      where: { cnpj },
-    });
-
-    if (checkCompanyExists) {
-      throw new AppError('Company already exists', 400);
-    }
+    await checkCompanyExists(cnpj);
 
     companyPasswordValidator(password);
 
@@ -29,8 +23,9 @@ class CreateCompanyService {
 
     const company = companyRepository.create({
       id: v4(),
-      companyName,
       cnpj,
+      companyName,
+      availableSeats,
       password: hashedPassword,
     });
 

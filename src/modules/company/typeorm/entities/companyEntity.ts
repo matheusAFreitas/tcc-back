@@ -12,6 +12,9 @@ class Company {
   cnpj: string;
 
   @Column()
+  availableSeats: number;
+
+  @Column()
   password: string;
 }
 

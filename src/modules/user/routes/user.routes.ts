@@ -12,8 +12,8 @@ userRoutes.post('/', async (request, response) => {
     const user = await createUser.execute({
       name,
       email,
-      companyName,
       password,
+      companyName,
     });
 
     delete user.password;

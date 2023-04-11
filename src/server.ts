@@ -4,7 +4,7 @@ import cors from 'cors';
 import express from 'express';
 
 import connection from './typeorm';
-import routesModule from './routes.module';
+import routesModule from './shared/infra/http/routes/routes.module';
 
 const app = express();
 
