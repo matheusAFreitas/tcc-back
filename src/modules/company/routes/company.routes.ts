@@ -6,7 +6,14 @@ const companyRoutes = Router();
 
 companyRoutes.post('/', async (request, response) => {
   try {
-    const { companyName, cnpj, password, availableSeats } = request.body;
+    const {
+      cnpj,
+      password,
+      companyName,
+      primaryColor,
+      secondaryColor,
+      availableSeats,
+    } = request.body;
 
     const createCompany = new CreateCompanyService();
 
@@ -14,6 +21,8 @@ companyRoutes.post('/', async (request, response) => {
       cnpj,
       password,
       companyName,
+      primaryColor,
+      secondaryColor,
       availableSeats,
     });
 

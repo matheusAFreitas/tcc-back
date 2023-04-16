@@ -11,6 +11,8 @@ class CreateCompanyService {
     cnpj,
     password,
     companyName,
+    primaryColor,
+    secondaryColor,
     availableSeats,
   }: ICompanyRequest): Promise<Company> {
     const companyRepository = getRepository(Company);
@@ -19,12 +21,22 @@ class CreateCompanyService {
 
     companyPasswordValidator(password);
 
+    if (!primaryColor) {
+      primaryColor = '#ffffff';
+    }
+
+    if (!secondaryColor) {
+      secondaryColor = '#ffffff';
+    }
+
     const hashedPassword = await hash(password, 15);
 
     const company = companyRepository.create({
       id: v4(),
       cnpj,
       companyName,
+      primaryColor,
+      secondaryColor,
       availableSeats,
       password: hashedPassword,
     });

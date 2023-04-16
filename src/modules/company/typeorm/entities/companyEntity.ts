@@ -15,6 +15,12 @@ class Company {
   availableSeats: number;
 
   @Column()
+  primaryColor: string;
+
+  @Column()
+  secondaryColor: string;
+
+  @Column()
   password: string;
 }
 
