@@ -21,7 +21,6 @@ class CreateUserService {
     companyName,
   }: IUserRequest): Promise<User> {
     const userRepository = getRepository(User);
-    const companyRepository = getRepository(Company);
 
     await checkUserExist(email);
     await checkCompanyNameExistsValidator(companyName);
