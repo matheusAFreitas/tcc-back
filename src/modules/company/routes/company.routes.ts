@@ -10,8 +10,6 @@ companyRoutes.post('/', async (request, response) => {
       cnpj,
       password,
       companyName,
-      primaryColor,
-      secondaryColor,
       availableSeats,
     } = request.body;
 
@@ -21,8 +19,6 @@ companyRoutes.post('/', async (request, response) => {
       cnpj,
       password,
       companyName,
-      primaryColor,
-      secondaryColor,
       availableSeats,
     });
 

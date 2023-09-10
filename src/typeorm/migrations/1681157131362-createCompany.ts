@@ -31,14 +31,6 @@ export class createCompany1681157131362 implements MigrationInterface {
             name: 'availableSeats',
             type: 'int',
           },
-          {
-            name: 'primaryColor',
-            type: 'varchar',
-          },
-          {
-            name: 'secondaryColor',
-            type: 'varchar',
-          },
         ],
       })
     );
