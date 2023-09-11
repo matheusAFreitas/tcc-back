@@ -41,7 +41,7 @@ userRoutes.get('/:email', async (request, response) => {
   });
 
   if (!user) {
-    throw new AppError(`cannot find user with this email: ${email}`, 400);
+    throw new AppError(`cannot find user with this email: ${email}`, 404);
   }
 
   delete user.password;
