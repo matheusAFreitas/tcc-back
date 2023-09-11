@@ -1,5 +1,10 @@
 import { Router } from 'express';
+import { getRepository } from 'typeorm';
+
+import User from '../typeorm/entities/UserEntity';
+import AppError from '../../../shared/errors/AppError';
 import CreateUserService from '../services/CreateUserService';
+import ensureAuthenticated from '../../../shared/infra/http/middlewares/ensureAuthenticated';
 
 const userRoutes = Router();
 
@@ -24,6 +29,24 @@ userRoutes.post('/', async (request, response) => {
   }
 });
 
-userRoutes.get('/', (request, response) => {});
+userRoutes.use(ensureAuthenticated);
+
+userRoutes.get('/:email', async (request, response) => {
+  const email = request.params.email;
+
+  const userRepository = getRepository(User);
+
+  const user = await userRepository.findOne({
+    where: { email },
+  });
+
+  if (!user) {
+    throw new AppError(`cannot find user with this email: ${email}`, 400);
+  }
+
+  delete user.password;
+
+  return response.json(user);
+});
 
 export default userRoutes;
