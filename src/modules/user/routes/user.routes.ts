@@ -5,6 +5,8 @@ import User from '../typeorm/entities/UserEntity';
 import AppError from '../../../shared/errors/AppError';
 import CreateUserService from '../services/CreateUserService';
 import ensureAuthenticated from '../../../shared/infra/http/middlewares/ensureAuthenticated';
+import GetUserService from '../services/GetUserService';
+import checkIsAdmin from '../../validators/checkIsAdminValidator';
 
 const userRoutes = Router();
 
@@ -29,22 +31,19 @@ userRoutes.post('/', async (request, response) => {
   }
 });
 
-userRoutes.use(ensureAuthenticated);
-
-userRoutes.get('/:email', async (request, response) => {
+userRoutes.get('/:email', ensureAuthenticated, async (request, response) => {
   const email = request.params.email;
+  const token = request.headers.authorization;
 
-  const userRepository = getRepository(User);
+  await checkIsAdmin(token);
 
-  const user = await userRepository.findOne({
-    where: { email },
-  });
+  const getUser = new GetUserService();
+  const user = await getUser.execute(email);
 
-  if (!user) {
-    throw new AppError(`cannot find user with this email: ${email}`, 404);
+  // adicionado para provavel uso futuro
+  if (!checkIsAdmin) {
+    delete user.isAdmin;
   }
-
-  delete user.password;
 
   return response.json(user);
 });

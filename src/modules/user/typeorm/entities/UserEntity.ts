@@ -16,6 +16,9 @@ class User {
 
   @Column()
   password: string;
+
+  @Column()
+  isAdmin: boolean;
 }
 
 export default User;
