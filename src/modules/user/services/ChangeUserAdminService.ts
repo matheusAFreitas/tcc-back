@@ -6,7 +6,7 @@ import AppError from '../../../shared/errors/AppError';
 import { checkAuthMethod } from '../../auth/validators/checkAuthMethod';
 import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
-export class ChangeUserAdmin {
+export class ChangeUserAdminService {
   async execute(email: string, token: string) {
     const userRepository = getRepository(User);
 
