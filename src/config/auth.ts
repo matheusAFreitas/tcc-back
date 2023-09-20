@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const expiresIn = process.env.JWT_EXPIRATION;
 const secret = process.env.SECRET;
+const expiresIn = process.env.JWT_EXPIRATION;
 
 export default {
   jwt: {
