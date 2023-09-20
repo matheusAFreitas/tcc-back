@@ -1,17 +1,12 @@
 import { Router } from 'express';
 
-import CreateCompanyService from '../services/CreateCompanyService';
+import { GetCompanyService, CreateCompanyService } from '../services';
 
 const companyRoutes = Router();
 
-companyRoutes.post('/', async (request, response) => {
+companyRoutes.post('/', async (req, res) => {
   try {
-    const {
-      cnpj,
-      password,
-      companyName,
-      availableSeats,
-    } = request.body;
+    const { cnpj, password, companyName, availableSeats } = req.body;
 
     const createCompany = new CreateCompanyService();
 
@@ -22,12 +17,19 @@ companyRoutes.post('/', async (request, response) => {
       availableSeats,
     });
 
-    delete company.password;
-
-    return response.json(company);
+    return res.json(company);
   } catch (err) {
-    return response.status(400).json({ error: err.message });
+    return res.status(400).json({ error: err.message });
   }
+});
+
+companyRoutes.get('/:cnpj', async (req, res) => {
+  const cnpj = req.params.cnpj;
+
+  const getCompany = new GetCompanyService();
+  const company = await getCompany.execute(cnpj);
+
+  return res.json(company);
 });
 
 export default companyRoutes;

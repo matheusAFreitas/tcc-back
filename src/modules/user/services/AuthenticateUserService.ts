@@ -11,7 +11,7 @@ import authConfig from '../../../config/auth';
 import User from '../typeorm/entities/UserEntity';
 import AppError from '../../../shared/errors/AppError';
 
-class AuthenticateUserService {
+export class AuthenticateUserService {
   public async execute({
     email,
     password,
@@ -19,9 +19,12 @@ class AuthenticateUserService {
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne({ where: { email } });
-    const passwordMatch = await compare(password, user.password);
+    if (!user) {
+      throw new AppError('Incorrect email/password combination.', 401);
+    }
 
-    if (!user || !passwordMatch) {
+    const passwordMatch = await compare(password, user.password);
+    if (!passwordMatch) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
 
@@ -38,5 +41,3 @@ class AuthenticateUserService {
     };
   }
 }
-
-export default AuthenticateUserService;

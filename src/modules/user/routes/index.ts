@@ -5,7 +5,7 @@ import sessionsRouter from './session.routes';
 
 const userRoutesModule = Router();
 
-userRoutesModule.use('/create', userRoutes);
+userRoutesModule.use('/v1', userRoutes);
 userRoutesModule.use('/auth', sessionsRouter);
 
 export default userRoutesModule;

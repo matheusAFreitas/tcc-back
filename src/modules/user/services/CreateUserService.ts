@@ -2,18 +2,17 @@ import { v4 } from 'uuid';
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
 
+import { IUserRequest } from '../interfaces';
+
 import {
   checkUserExist,
+  userPasswordValidator,
   checkCompanyNameExistsValidator,
 } from '../../validators';
 
-import { IUserRequest } from '../interfaces';
-
 import User from '../typeorm/entities/UserEntity';
-import Company from '../../company/typeorm/entities/companyEntity';
-import userPasswordValidator from '../../validators/userPasswordValidator';
 
-class CreateUserService {
+export class CreateUserService {
   async execute({
     name,
     email,
@@ -39,8 +38,8 @@ class CreateUserService {
 
     await userRepository.save(user);
 
+    delete user.password;
+
     return user;
   }
 }
-
-export default CreateUserService;

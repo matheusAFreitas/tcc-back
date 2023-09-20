@@ -4,9 +4,10 @@ import { getRepository } from 'typeorm';
 import { ICompanyRequest } from '../interfaces';
 
 import Company from '../typeorm/entities/companyEntity';
+
 import { companyPasswordValidator, checkCompanyExists } from '../validator';
 
-class CreateCompanyService {
+export class CreateCompanyService {
   async execute({
     cnpj,
     password,
@@ -31,8 +32,8 @@ class CreateCompanyService {
 
     await companyRepository.save(company);
 
+    delete company.password;
+
     return company;
   }
 }
-
-export default CreateCompanyService;

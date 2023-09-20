@@ -1,13 +1,12 @@
 import { verify } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
-import { NextFunction, Request, Response } from 'express';
 
 import authConfig from '../../config/auth';
 
-import User from '../user/typeorm/entities/UserEntity';
 import AppError from '../../shared/errors/AppError';
+import User from '../user/typeorm/entities/UserEntity';
 
-export default async function checkIsAdmin(bearer: string): Promise<void> {
+export async function checkIsAdminValidator(bearer: string): Promise<void> {
   const [, token] = bearer.split(' ');
 
   const decoded = verify(token, authConfig.jwt.secret);

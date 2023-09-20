@@ -1,18 +1,13 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
 
-import User from '../typeorm/entities/UserEntity';
-import AppError from '../../../shared/errors/AppError';
-import CreateUserService from '../services/CreateUserService';
-import ensureAuthenticated from '../../../shared/infra/http/middlewares/ensureAuthenticated';
-import GetUserService from '../services/GetUserService';
-import checkIsAdmin from '../../validators/checkIsAdminValidator';
+import { GetUserService, CreateUserService } from '../services';
+import { ensureAuthenticated } from '../../../shared/infra/http/middlewares';
 
 const userRoutes = Router();
 
-userRoutes.post('/', async (request, response) => {
+userRoutes.post('/', async (req, res) => {
   try {
-    const { email, name, password, companyName } = request.body;
+    const { email, name, password, companyName } = req.body;
 
     const createUser = new CreateUserService();
 
@@ -23,29 +18,20 @@ userRoutes.post('/', async (request, response) => {
       companyName,
     });
 
-    delete user.password;
-
-    return response.json(user);
+    return res.json(user);
   } catch (err) {
-    return response.status(400).json({ error: err.message });
+    return res.status(400).json({ error: err.message });
   }
 });
 
-userRoutes.get('/:email', ensureAuthenticated, async (request, response) => {
-  const email = request.params.email;
-  const token = request.headers.authorization;
-
-  await checkIsAdmin(token);
+userRoutes.get('/:email', ensureAuthenticated, async (req, res) => {
+  const email = req.params.email;
+  const token = req.headers.authorization;
 
   const getUser = new GetUserService();
-  const user = await getUser.execute(email);
+  const user = await getUser.execute(email, token);
 
-  // adicionado para provavel uso futuro
-  if (!checkIsAdmin) {
-    delete user.isAdmin;
-  }
-
-  return response.json(user);
+  return res.json(user);
 });
 
 export default userRoutes;

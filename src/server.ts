@@ -7,13 +7,13 @@ import connection from './typeorm';
 import error from './shared/infra/http/error/error';
 import routesModule from './shared/infra/http/routes/routes.module';
 
-const app = express();
-
 async function databaseSetup() {
   await connection();
 }
 
 databaseSetup();
+
+const app = express();
 
 app.use(cors());
 app.use(express.json());

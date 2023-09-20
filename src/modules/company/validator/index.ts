@@ -1,2 +1,2 @@
-export * from './checkCompanyExistsValidator';
 export * from './companyPasswordValidator';
+export * from './checkCompanyExistsValidator';

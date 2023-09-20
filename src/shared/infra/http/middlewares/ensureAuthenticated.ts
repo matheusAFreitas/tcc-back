@@ -10,7 +10,7 @@ interface ITokenPayLoad {
   sub: string;
 }
 
-export default function ensureAuthenticated(
+export function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
@@ -18,7 +18,7 @@ export default function ensureAuthenticated(
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError('JWT token is missing', 401);
+    throw new AppError('auth is missing', 401);
   }
 
   const [, token] = authHeader.split(' ');
