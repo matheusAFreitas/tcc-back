@@ -3,6 +3,6 @@ import companyRoutes from './company.routes';
 
 const companyRoutesModule = Router();
 
-companyRoutesModule.use('/v1', companyRoutes);
+companyRoutesModule.use('/', companyRoutes);
 
 export default companyRoutesModule;

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { GetCompanyService, CreateCompanyService } from '../services';
+import { ensureAuthenticated } from '../../../shared/infra/http/middlewares';
 
 const companyRoutes = Router();
 
@@ -23,7 +24,7 @@ companyRoutes.post('/', async (req, res) => {
   }
 });
 
-companyRoutes.get('/:cnpj', async (req, res) => {
+companyRoutes.get('/:cnpj', ensureAuthenticated, async (req, res) => {
   const cnpj = req.params.cnpj;
 
   const getCompany = new GetCompanyService();

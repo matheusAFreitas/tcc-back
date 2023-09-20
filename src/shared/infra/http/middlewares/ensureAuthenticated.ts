@@ -11,11 +11,11 @@ interface ITokenPayLoad {
 }
 
 export function ensureAuthenticated(
-  request: Request,
-  response: Response,
+  req: Request,
+  res: Response,
   next: NextFunction
 ): void {
-  const authHeader = request.headers.authorization;
+  const authHeader = req.headers.authorization;
 
   if (!authHeader) {
     throw new AppError('auth is missing', 401);
@@ -28,9 +28,14 @@ export function ensureAuthenticated(
 
     const { sub } = decoded as ITokenPayLoad;
 
-    request.user = {
+    req.user = {
       id: sub,
     };
+
+    req.company = {
+      id: sub,
+    };
+
     return next();
   } catch {
     throw new AppError('Invalid JWT Token', 401);
