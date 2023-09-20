@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv';
 import 'express-async-errors';
 
 import cors from 'cors';
@@ -20,7 +21,11 @@ app.use(express.json());
 app.use(routesModule);
 app.use(error);
 
-app.listen(3333, () => {
+dotenv.config();
+
+const port = process.env.PORT;
+
+app.listen(port, () => {
   console.log('Server Started');
-  console.log('link: http://localhost:3333');
+  console.log(`link: http://localhost:${port}`);
 });
