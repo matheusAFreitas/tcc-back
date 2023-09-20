@@ -4,6 +4,7 @@ import { ICompanyResponse } from '../interfaces';
 
 import AppError from '../../../shared/errors/AppError';
 import Company from '../typeorm/entities/companyEntity';
+import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export class GetCompanyService {
   public async execute(cnpj: string): Promise<ICompanyResponse> {
@@ -14,10 +15,7 @@ export class GetCompanyService {
     });
 
     if (!company) {
-      throw new AppError(
-        `cannot find this company with this CNPJ: ${cnpj}`,
-        404
-      );
+      throw new AppError(`${errorMessages.CANNOT_FIND_COMPANY} ${cnpj}`, 404);
     }
 
     delete company.password;

@@ -3,6 +3,7 @@ import User from '../typeorm/entities/UserEntity';
 import { checkIsAdminValidator } from '../validators';
 import AppError from '../../../shared/errors/AppError';
 import { checkAuthMethod } from '../../auth/validators/checkAuthMethod';
+import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export class ChangeUserAdmin {
   async execute(email: string, token: string) {
@@ -15,7 +16,7 @@ export class ChangeUserAdmin {
     });
 
     if (!user) {
-      throw new AppError(`user with email: ${email} not found`);
+      throw new AppError(`${errorMessages.CANNOT_FIND_USER} ${email}`);
     }
 
     if (user.isAdmin === true) {

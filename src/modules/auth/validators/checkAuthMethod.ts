@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 import User from '../../user/typeorm/entities/UserEntity';
 import AppError from '../../../shared/errors/AppError';
 import Company from '../../company/typeorm/entities/companyEntity';
+import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export async function checkAuthMethod(
   bearer: string,
@@ -23,7 +24,7 @@ export async function checkAuthMethod(
     });
 
     if (!user) {
-      throw new AppError('somethings wrong (user)', 400);
+      throw new AppError(errorMessages.SOMETHING_WRONG, 400);
     }
   }
 
@@ -33,7 +34,7 @@ export async function checkAuthMethod(
     const company = await companyRepository.findOne({ where: { id } });
 
     if (!company) {
-      throw new AppError('access denied', 403);
+      throw new AppError(errorMessages.ACCESS_DENIED, 403);
     }
   }
 }

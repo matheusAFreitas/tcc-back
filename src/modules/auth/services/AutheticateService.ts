@@ -6,6 +6,7 @@ import User from '../../user/typeorm/entities/UserEntity';
 import Company from '../../company/typeorm/entities/companyEntity';
 import AppError from '../../../shared/errors/AppError';
 import authConfig from '../../../config/auth';
+import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export class AuthenticateService {
   public async execute({
@@ -19,11 +20,11 @@ export class AuthenticateService {
     if (email) {
       const user = await usersRepository.findOne({ where: { email } });
       if (!user) {
-        throw new AppError('Incorrect email/password combination.', 401);
+        throw new AppError(errorMessages.INCORRECT_EMAILPASS, 401);
       }
       const passwordMatch = await compare(password, user.password);
       if (!passwordMatch) {
-        throw new AppError('Incorrect email/password combination.', 401);
+        throw new AppError(errorMessages.INCORRECT_EMAILPASS, 401);
       }
 
       const { secret, expiresIn } = authConfig.jwt;

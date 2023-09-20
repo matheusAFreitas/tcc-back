@@ -3,6 +3,7 @@ import { verify } from 'jsonwebtoken';
 
 import AppError from '../../../errors/AppError';
 import authConfig from '../../../../config/auth';
+import { errorMessages } from '../../../errors/errorMessagesEnum';
 
 interface ITokenPayLoad {
   iat: number;
@@ -18,7 +19,7 @@ export function ensureAuthenticated(
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError('auth is missing', 401);
+    throw new AppError(errorMessages.NOT_AUTHORISED, 401);
   }
 
   const [, token] = authHeader.split(' ');
@@ -38,6 +39,6 @@ export function ensureAuthenticated(
 
     return next();
   } catch {
-    throw new AppError('Invalid JWT Token', 401);
+    throw new AppError(errorMessages.NOT_AUTHORISED, 401);
   }
 }

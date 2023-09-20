@@ -5,6 +5,7 @@ import AppError from '../../../shared/errors/AppError';
 
 import { IUserResponse } from '../interfaces';
 import { checkIsAdminValidator } from '../validators';
+import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export class GetUserService {
   public async execute(email: string, token: string): Promise<IUserResponse> {
@@ -17,7 +18,7 @@ export class GetUserService {
     });
 
     if (!user) {
-      throw new AppError(`cannot find user with this email: ${email}`, 404);
+      throw new AppError(`${errorMessages.CANNOT_FIND_USER} ${email}`, 404);
     }
 
     delete user.password;
