@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import { GetUserService, CreateUserService } from '../services';
 import { ensureAuthenticated } from '../../../shared/infra/http/middlewares';
+import { checkAuthMethod } from '../../auth/validators/checkAuthMethod';
+import { ChangeUserAdmin } from '../services/ChangeUserAdmin';
 
 const userRoutes = Router();
 
@@ -32,6 +34,17 @@ userRoutes.get('/:email', ensureAuthenticated, async (req, res) => {
   const user = await getUser.execute(email, token);
 
   return res.json(user);
+});
+
+userRoutes.patch('/admin/:email', ensureAuthenticated, async (req, res) => {
+  const email = req.params.email;
+  const token = req.headers.authorization;
+
+  const changeUserAdmin = new ChangeUserAdmin();
+
+  const admin = await changeUserAdmin.execute(email, token);
+
+  return res.json(admin);
 });
 
 export default userRoutes;
