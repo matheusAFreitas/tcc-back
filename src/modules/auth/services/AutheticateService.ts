@@ -22,10 +22,12 @@ export class AuthenticateService {
     if (email) {
       const user = await usersRepository.findOne({ where: { email } });
       if (!user) {
+        console.log(`ERROR: ${errorMessages.INCORRECT_EMAILPASS}`);
         throw new AppError(errorMessages.INCORRECT_EMAILPASS, 401);
       }
       const passwordMatch = await compare(password, user.password);
       if (!passwordMatch) {
+        console.log(`ERROR: ${errorMessages.INCORRECT_EMAILPASS}`);
         throw new AppError(errorMessages.INCORRECT_EMAILPASS, 401);
       }
 
@@ -45,11 +47,13 @@ export class AuthenticateService {
     if (cnpj) {
       const company = await companyRepository.findOne({ where: { cnpj } });
       if (!company) {
-        throw new AppError('Incorrect cnpj/password combination', 401);
+        console.log(`ERROR: ${errorMessages.INCORRECT_CNPJPASS}`);
+        throw new AppError(errorMessages.INCORRECT_CNPJPASS, 401);
       }
       const passwordMatch = await compare(password, company.password);
       if (!passwordMatch) {
-        throw new AppError('Incorrect email/password combination.', 401);
+        console.log(`ERROR: ${errorMessages.INCORRECT_CNPJPASS}`);
+        throw new AppError(errorMessages.INCORRECT_CNPJPASS, 401);
       }
       const { secret, expiresIn } = authConfig.jwt;
 

@@ -19,6 +19,7 @@ userRoutes.post('/', async (req, res) => {
       companyName,
     });
 
+    console.log('POST', user);
     return res.json(user);
   } catch (err) {
     return res.status(400).json({ error: err.message });
@@ -32,6 +33,7 @@ userRoutes.get('/:email', ensureAuthenticated, async (req, res) => {
   const getUser = new GetUserService();
   const user = await getUser.execute(email, token);
 
+  console.log('GET', user);
   return res.json(user);
 });
 
@@ -43,6 +45,7 @@ userRoutes.patch('/admin/:email', ensureAuthenticated, async (req, res) => {
 
   const admin = await changeUserAdmin.execute(email, token);
 
+  console.log('PATCH', admin);
   return res.json(admin);
 });
 

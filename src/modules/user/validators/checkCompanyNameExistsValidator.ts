@@ -13,6 +13,7 @@ export async function checkCompanyNameExistsValidator(companyName: string) {
   });
 
   if (!checkCompanyExists) {
+    console.log(`ERROR: ${errorMessages.COMPANY_NOT_EXISTS}`);
     throw new AppError(errorMessages.COMPANY_NOT_EXISTS, 404);
   }
 }

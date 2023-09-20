@@ -18,6 +18,7 @@ companyRoutes.post('/', async (req, res) => {
       availableSeats,
     });
 
+    console.log('POST:', company);
     return res.json(company);
   } catch (err) {
     return res.status(400).json({ error: err.message });
@@ -30,6 +31,7 @@ companyRoutes.get('/:cnpj', ensureAuthenticated, async (req, res) => {
   const getCompany = new GetCompanyService();
   const company = await getCompany.execute(cnpj);
 
+  console.log('GET:', company);
   return res.json(company);
 });
 

@@ -28,11 +28,13 @@ export async function checkIsAdminValidator(bearer: string): Promise<void> {
     if (company) {
       return;
     } else {
+      console.log(`CRITICAL ERROR: ${errorMessages.SOMETHING_WRONG}`);
       throw new AppError(errorMessages.SOMETHING_WRONG, 400);
     }
   }
 
   if (!user.isAdmin) {
+    console.log(`ERROR: ${errorMessages.ACCESS_DENIED}`);
     throw new AppError(errorMessages.ACCESS_DENIED, 403);
   }
 }

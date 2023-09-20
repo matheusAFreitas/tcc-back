@@ -26,6 +26,7 @@ export async function checkAuthMethod(
     });
 
     if (!user) {
+      console.log(`CRITICAL ERROR: ${errorMessages.SOMETHING_WRONG}`);
       throw new AppError(errorMessages.SOMETHING_WRONG, 400);
     }
   }
@@ -36,6 +37,7 @@ export async function checkAuthMethod(
     const company = await companyRepository.findOne({ where: { id } });
 
     if (!company) {
+      console.log(`ERROR: ${errorMessages.ACCESS_DENIED}`);
       throw new AppError(errorMessages.ACCESS_DENIED, 403);
     }
   }

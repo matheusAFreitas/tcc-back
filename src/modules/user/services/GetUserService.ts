@@ -18,6 +18,7 @@ export class GetUserService {
     });
 
     if (!user) {
+      console.log(`ERROR: ${errorMessages.CANNOT_FIND_USER} ${email}`);
       throw new AppError(`${errorMessages.CANNOT_FIND_USER} ${email}`, 404);
     }
 

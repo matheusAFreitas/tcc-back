@@ -16,6 +16,7 @@ authRoutes.post('/user', async (req, res) => {
 
   delete user.password;
 
+  console.log('POST: AUTH:', user, 'token: ', token);
   return res.json({ user, token });
 });
 
@@ -28,6 +29,8 @@ authRoutes.post('/company', async (req, res) => {
     password,
   });
   delete company.password;
+
+  console.log('POST: AUTH:', company, 'token: ', token);
   return res.json({ company, token });
 });
 

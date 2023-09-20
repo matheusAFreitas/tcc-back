@@ -10,6 +10,7 @@ export async function checkUserExist(email: string) {
   const checkUserExists = await userRepository.findOne({ where: { email } });
 
   if (checkUserExists) {
+    console.log(`ERROR: ${errorMessages.USER_ALREADY_EXISTS}`);
     throw new AppError(errorMessages.USER_ALREADY_EXISTS, 400);
   }
 }

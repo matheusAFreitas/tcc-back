@@ -15,6 +15,7 @@ export class GetCompanyService {
     });
 
     if (!company) {
+      console.log(`ERROR: ${errorMessages.CANNOT_FIND_COMPANY} ${cnpj}`);
       throw new AppError(`${errorMessages.CANNOT_FIND_COMPANY} ${cnpj}`, 404);
     }
 

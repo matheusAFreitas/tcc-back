@@ -19,6 +19,7 @@ export function ensureAuthenticated(
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
+    console.log(`ERROR: ${errorMessages.NOT_AUTHORISED}`);
     throw new AppError(errorMessages.NOT_AUTHORISED, 401);
   }
 
@@ -39,6 +40,7 @@ export function ensureAuthenticated(
 
     return next();
   } catch {
+    console.log(`ERROR: ${errorMessages.NOT_AUTHORISED}`);
     throw new AppError(errorMessages.NOT_AUTHORISED, 401);
   }
 }

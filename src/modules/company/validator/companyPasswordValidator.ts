@@ -1,9 +1,11 @@
 import AppError from '../../../shared/errors/AppError';
+import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export function companyPasswordValidator(password: string) {
   const checkPassword = password;
 
   if (checkPassword.length < 14) {
-    throw new AppError('the password is not long enough', 400);
+    console.log(`ERROR: ${errorMessages.PASSWORD_LENGTH}`);
+    throw new AppError(errorMessages.PASSWORD_LENGTH, 400);
   }
 }
