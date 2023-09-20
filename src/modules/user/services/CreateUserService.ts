@@ -8,7 +8,7 @@ import {
   checkUserExist,
   userPasswordValidator,
   checkCompanyNameExistsValidator,
-} from '../../validators';
+} from '../validators';
 
 import User from '../typeorm/entities/UserEntity';
 

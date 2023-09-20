@@ -4,7 +4,7 @@ import User from '../typeorm/entities/UserEntity';
 import AppError from '../../../shared/errors/AppError';
 
 import { IUserResponse } from '../interfaces';
-import { checkIsAdminValidator } from '../../validators';
+import { checkIsAdminValidator } from '../validators';
 
 export class GetUserService {
   public async execute(email: string, token: string): Promise<IUserResponse> {
