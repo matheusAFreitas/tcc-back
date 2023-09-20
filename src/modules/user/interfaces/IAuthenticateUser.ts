@@ -1,7 +1,8 @@
 import User from '../typeorm/entities/UserEntity';
 
 export interface IAuthenticateUserRequest {
-  email: string;
+  email?: string;
+  cnpj?: string;
   password: string;
 }
 

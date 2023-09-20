@@ -1,10 +1,10 @@
 import { verify } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
-import authConfig from '../../config/auth';
+import authConfig from '../../../config/auth';
 
-import AppError from '../../shared/errors/AppError';
-import User from '../user/typeorm/entities/UserEntity';
+import AppError from '../../../shared/errors/AppError';
+import User from '../../user/typeorm/entities/UserEntity';
 
 export async function checkIsAdminValidator(bearer: string): Promise<void> {
   const [, token] = bearer.split(' ');

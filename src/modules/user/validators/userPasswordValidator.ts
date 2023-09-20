@@ -1,4 +1,4 @@
-import AppError from '../../shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 
 export function userPasswordValidator(password: string) {
   const checkPassword = password;

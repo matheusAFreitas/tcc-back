@@ -1,7 +1,6 @@
 import { getRepository } from 'typeorm';
-
-import AppError from '../../shared/errors/AppError';
-import Company from '../company/typeorm/entities/companyEntity';
+import Company from '../../company/typeorm/entities/companyEntity';
+import AppError from '../../../shared/errors/AppError';
 
 export async function checkCompanyNameExistsValidator(companyName: string) {
   const companyRepository = getRepository(Company);
