@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import { AuthenticateService } from '../services/AutheticateService';
 
 const authRoutes = Router();

@@ -6,6 +6,7 @@ import authConfig from '../../../config/auth';
 import AppError from '../../../shared/errors/AppError';
 import User from '../../user/typeorm/entities/UserEntity';
 import Company from '../../company/typeorm/entities/companyEntity';
+
 import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export async function checkIsAdminValidator(bearer: string): Promise<void> {

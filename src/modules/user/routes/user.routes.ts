@@ -1,9 +1,8 @@
 import { Router } from 'express';
 
+import { ChangeUserAdmin } from '../services/ChangeUserAdmin';
 import { GetUserService, CreateUserService } from '../services';
 import { ensureAuthenticated } from '../../../shared/infra/http/middlewares';
-import { checkAuthMethod } from '../../auth/validators/checkAuthMethod';
-import { ChangeUserAdmin } from '../services/ChangeUserAdmin';
 
 const userRoutes = Router();
 

@@ -1,7 +1,8 @@
 import { getRepository } from 'typeorm';
+
 import User from '../typeorm/entities/UserEntity';
-import { checkIsAdminValidator } from '../validators';
 import AppError from '../../../shared/errors/AppError';
+
 import { checkAuthMethod } from '../../auth/validators/checkAuthMethod';
 import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 

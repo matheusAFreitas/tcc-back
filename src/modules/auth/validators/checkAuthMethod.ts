@@ -1,9 +1,11 @@
 import { verify } from 'jsonwebtoken';
-import authConfig from '../../../config/auth';
 import { getRepository } from 'typeorm';
-import User from '../../user/typeorm/entities/UserEntity';
+
+import authConfig from '../../../config/auth';
 import AppError from '../../../shared/errors/AppError';
+import User from '../../user/typeorm/entities/UserEntity';
 import Company from '../../company/typeorm/entities/companyEntity';
+
 import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export async function checkAuthMethod(

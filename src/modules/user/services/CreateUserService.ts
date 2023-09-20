@@ -2,15 +2,14 @@ import { v4 } from 'uuid';
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
 
-import { IUserRequest } from '../interfaces';
+import User from '../typeorm/entities/UserEntity';
 
 import {
   checkUserExist,
   userPasswordValidator,
   checkCompanyNameExistsValidator,
 } from '../validators';
-
-import User from '../typeorm/entities/UserEntity';
+import { IUserRequest } from '../interfaces';
 
 export class CreateUserService {
   async execute({

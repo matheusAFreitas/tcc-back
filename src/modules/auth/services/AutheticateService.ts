@@ -1,12 +1,14 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
-import { IAuthenticateRequest, IAuthenticateResponse } from '../interfaces';
+
+import authConfig from '../../../config/auth';
+import AppError from '../../../shared/errors/AppError';
 import User from '../../user/typeorm/entities/UserEntity';
 import Company from '../../company/typeorm/entities/companyEntity';
-import AppError from '../../../shared/errors/AppError';
-import authConfig from '../../../config/auth';
+
 import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
+import { IAuthenticateRequest, IAuthenticateResponse } from '../interfaces';
 
 export class AuthenticateService {
   public async execute({

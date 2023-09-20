@@ -1,4 +1,5 @@
 import AppError from '../../../shared/errors/AppError';
+
 import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export function userPasswordValidator(password: string) {
