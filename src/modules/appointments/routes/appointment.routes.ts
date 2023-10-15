@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
-import CreateAppointmentService from '../services/CreateAppointmentService';
-import { GetAppointmentByUser } from '../services';
+import { CreateAppointmentService, GetAppointmentByUser } from '../services';
 
 const appointmentRoutes = Router();
 
