@@ -1,5 +1,5 @@
-import { ICompanyResponse } from '../../company/interfaces';
-import { GetCompanyByNameService } from '../../company/services';
+import { ICompanyResponse } from '@modules/company/interfaces';
+import { GetCompanyByNameService } from '@modules/company/services';
 
 export async function getCompany(
   companyName: string

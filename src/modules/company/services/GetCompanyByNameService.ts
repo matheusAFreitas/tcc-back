@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
 
-import AppError from '../../../shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
 import Company from '../typeorm/entities/companyEntity';
 import { ICompanyResponse } from '../interfaces';
 

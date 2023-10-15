@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import User from '../../../user/typeorm/entities/UserEntity';
+import User from '@modules/user/typeorm/entities/UserEntity';
 
 @Entity('appointments')
 class Appointment {

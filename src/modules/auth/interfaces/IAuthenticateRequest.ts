@@ -1,5 +1,5 @@
-import User from '../../user/typeorm/entities/UserEntity';
-import Company from '../../company/typeorm/entities/companyEntity';
+import User from '@modules/user/typeorm/entities/UserEntity';
+import Company from '@modules/company/typeorm/entities/companyEntity';
 
 export interface IAuthenticateRequest {
   email?: string;

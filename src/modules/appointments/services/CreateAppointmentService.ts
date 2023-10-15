@@ -1,19 +1,20 @@
 import { getCustomRepository, getRepository } from 'typeorm';
 import dayjs from 'dayjs';
 
-import AppError from '../../../shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
+
 import Appointment from '../typeorm/entities/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentRepository';
 
 import { getCompany, getUser } from '../validators';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 interface ICreateAppointment {
   date: Date;
   bearer: string;
 }
 
-class CreateAppointmentService {
+export class CreateAppointmentService {
   public async execute({
     date,
     bearer,
@@ -55,5 +56,3 @@ class CreateAppointmentService {
     return appointment;
   }
 }
-
-export default CreateAppointmentService;

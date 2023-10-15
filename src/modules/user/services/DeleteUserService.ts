@@ -1,8 +1,9 @@
 import { getRepository } from 'typeorm';
 import { checkIsAdminValidator } from '../validators';
 import User from '../typeorm/entities/UserEntity';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
-import AppError from '../../../shared/errors/AppError';
+
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
+import AppError from '@shared/errors/AppError';
 
 export class DeleteUserService {
   public async execute(email: string, token: string) {

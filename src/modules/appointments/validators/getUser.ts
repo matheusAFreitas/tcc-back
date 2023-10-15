@@ -1,8 +1,8 @@
 import { verify } from 'jsonwebtoken';
 
-import authConfig from '../../../config/auth';
-import { GetUserByIdService } from '../../user/services';
-import { IUserResponse } from '../../user/interfaces';
+import authConfig from '@config/auth';
+import { GetUserByIdService } from '@modules/user/services';
+import { IUserResponse } from '@modules/user/interfaces';
 
 export async function getUser(bearer: string): Promise<IUserResponse> {
   const [, token] = bearer.split(' ');

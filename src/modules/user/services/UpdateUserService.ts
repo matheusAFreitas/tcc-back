@@ -1,9 +1,10 @@
-import { getRepository } from 'typeorm';
-import { IUserUpdateRequest } from '../interfaces';
-import User from '../typeorm/entities/UserEntity';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
-import AppError from '../../../shared/errors/AppError';
 import { hash } from 'bcryptjs';
+import { getRepository } from 'typeorm';
+
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
+
+import User from '../typeorm/entities/UserEntity';
 
 export class UpdateUserService {
   async execute({ id, name, email, password }) {

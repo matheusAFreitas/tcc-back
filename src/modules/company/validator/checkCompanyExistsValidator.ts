@@ -1,8 +1,9 @@
 import { getRepository } from 'typeorm';
 
-import AppError from '../../../shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
+
 import Company from '../typeorm/entities/companyEntity';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export async function checkCompanyExists(cnpj: string) {
   const companyRepository = getRepository(Company);

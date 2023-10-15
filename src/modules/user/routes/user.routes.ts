@@ -7,7 +7,8 @@ import {
   DeleteUserService,
   UpdateUserService,
 } from '../services';
-import { ensureAuthenticated } from '../../../shared/infra/http/middlewares';
+
+import { ensureAuthenticated } from '@shared/infra/http/middlewares';
 import { IUserUpdateRequest } from '../interfaces';
 
 const userRoutes = Router();

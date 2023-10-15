@@ -1,12 +1,12 @@
 import { verify } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
-import authConfig from '../../../config/auth';
-import AppError from '../../../shared/errors/AppError';
-import User from '../../user/typeorm/entities/UserEntity';
-import Company from '../../company/typeorm/entities/companyEntity';
+import authConfig from '@config/auth';
+import AppError from '@shared/errors/AppError';
+import User from '@modules/user/typeorm/entities/UserEntity';
+import Company from '@modules/company/typeorm/entities/companyEntity';
 
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
 
 export async function checkAuthMethod(
   bearer: string,

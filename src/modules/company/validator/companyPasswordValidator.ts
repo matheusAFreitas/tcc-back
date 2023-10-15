@@ -1,5 +1,5 @@
-import AppError from '../../../shared/errors/AppError';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
 
 export function companyPasswordValidator(password: string) {
   const checkPassword = password;

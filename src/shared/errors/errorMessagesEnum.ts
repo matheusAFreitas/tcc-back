@@ -7,7 +7,7 @@ export enum errorMessages {
   // user
   CANNOT_FIND_USER = 'cannot find user with this email:',
   CANNOT_FIND_USER_ID = 'cannot find user with this id:',
-  USER_ALREADY_EXISTS = 'user with same email address already exists',
+  USER_ALREADY_EXISTS = 'user with this email address already exists',
 
   // company
   COMPANY_NOT_EXISTS = 'Company does not exist',

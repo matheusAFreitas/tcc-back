@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 
 import User from '../typeorm/entities/UserEntity';
-import AppError from '../../../shared/errors/AppError';
 
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
 
 export async function checkUserExist(email: string) {
   const userRepository = getRepository(User);

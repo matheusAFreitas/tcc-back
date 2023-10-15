@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { GetCompanyService, CreateCompanyService } from '../services';
-import { ensureAuthenticated } from '../../../shared/infra/http/middlewares';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares';
 
 const companyRoutes = Router();
 

@@ -1,10 +1,10 @@
 import { getRepository } from 'typeorm';
 
-import User from '../typeorm/entities/UserEntity';
-import AppError from '../../../shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
 
+import User from '../typeorm/entities/UserEntity';
 import { checkAuthMethod } from '../../auth/validators/checkAuthMethod';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export class ChangeUserAdminService {
   async execute(email: string, token: string) {

@@ -1,11 +1,12 @@
 import { getRepository } from 'typeorm';
 
+import AppError from '@shared/errors/AppError';
+import { errorMessages } from '@shared/errors/errorMessagesEnum';
+
 import User from '../typeorm/entities/UserEntity';
-import AppError from '../../../shared/errors/AppError';
 
 import { IUserResponse } from '../interfaces';
 import { checkIsAdminValidator } from '../validators';
-import { errorMessages } from '../../../shared/errors/errorMessagesEnum';
 
 export class GetUserService {
   public async execute(email: string, token: string): Promise<IUserResponse> {
