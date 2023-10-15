@@ -15,6 +15,9 @@ class Company {
   availableSeats: number;
 
   @Column()
+  rentSeats: number;
+
+  @Column()
   password: string;
 }
 

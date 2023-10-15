@@ -12,7 +12,7 @@ export class CreateCompanyService {
     cnpj,
     password,
     companyName,
-    availableSeats,
+    rentSeats,
   }: ICompanyRequest): Promise<Company> {
     const companyRepository = getRepository(Company);
 
@@ -26,7 +26,8 @@ export class CreateCompanyService {
       id: v4(),
       cnpj,
       companyName,
-      availableSeats,
+      rentSeats,
+      availableSeats: rentSeats,
       password: hashedPassword,
     });
 

@@ -1,6 +1,6 @@
 export interface ICompanyRequest {
   companyName: string;
   cnpj: string;
-  availableSeats: number;
+  rentSeats: number;
   password: string;
 }

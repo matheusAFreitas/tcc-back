@@ -7,7 +7,8 @@
   "database": "postgres",
   "entities": [
     "./src/modules/user/typeorm/entities/*.ts",
-    "./src/modules/company/typeorm/entities/*.ts"
+    "./src/modules/company/typeorm/entities/*.ts",
+    "./src/modules/appointments/typeorm/entities/*.ts"
   ],
   "migrations": ["./src/typeorm/migrations/*.ts"],
   "cli": {
