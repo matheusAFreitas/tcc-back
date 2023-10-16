@@ -1,7 +1,13 @@
 import { Router } from 'express';
 
-import { GetCompanyService, CreateCompanyService } from '../services';
+import {
+  GetCompanyService,
+  CreateCompanyService,
+  UpdateCompanyService,
+  DeleteCompanyService,
+} from '../services';
 import { ensureAuthenticated } from '@shared/infra/http/middlewares';
+import { ICompanyUpdateRequest } from '../interfaces';
 
 const companyRoutes = Router();
 
@@ -32,6 +38,35 @@ companyRoutes.get('/:cnpj', ensureAuthenticated, async (req, res) => {
   const company = await getCompany.execute(cnpj);
 
   console.log('GET:', company);
+  return res.json(company);
+});
+
+companyRoutes.patch('/update/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const { companyName, rentSeats, password }: ICompanyUpdateRequest = req.body;
+
+  const updateCompany = new UpdateCompanyService();
+
+  const company = await updateCompany.execute({
+    id,
+    companyName,
+    rentSeats,
+    password,
+  });
+
+  console.log('PATCH:', company);
+  return res.json(company);
+});
+
+companyRoutes.delete('/:cnpj', ensureAuthenticated, async (req, res) => {
+  const cnpj = req.params.cnpj;
+
+  const deleteCompany = new DeleteCompanyService();
+
+  const company = await deleteCompany.execute(cnpj);
+
+  console.log('DELETE:', company);
   return res.json(company);
 });
 

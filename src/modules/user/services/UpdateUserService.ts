@@ -9,7 +9,7 @@ import User from '../typeorm/entities/UserEntity';
 export class UpdateUserService {
   async execute({ id, name, email, password }) {
     const userRepository = getRepository(User);
-
+    console.log(id);
     const user = await userRepository.findOne({
       where: { id },
     });
