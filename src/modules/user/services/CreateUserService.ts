@@ -15,6 +15,7 @@ export class CreateUserService {
   async execute({
     name,
     email,
+    role,
     password,
     companyName,
   }: IUserRequest): Promise<User> {
@@ -30,6 +31,7 @@ export class CreateUserService {
     const user = userRepository.create({
       id: v4(),
       name,
+      role,
       email,
       companyName,
       password: hashedPassword,

@@ -15,13 +15,14 @@ const userRoutes = Router();
 
 userRoutes.post('/', async (req, res) => {
   try {
-    const { email, name, password, companyName } = req.body;
+    const { email, name, role, password, companyName } = req.body;
 
     const createUser = new CreateUserService();
 
     const user = await createUser.execute({
       name,
       email,
+      role,
       password,
       companyName,
     });

@@ -20,6 +20,12 @@ export enum errorMessages {
 
   APPOINTMENT_ALREADY_BOOKED = 'appointment already booked',
 
+  APPOINTMENT_FROM_OTHER_USER = 'this appointment is from another user',
+
+  DATE_CANNOT_BE_EMPTY = 'date field cannot be empty',
+
+  APPOINTMENT_NOT_FOUND = 'appointment not found',
+
   // bateu aqui fudeu
   SOMETHING_WRONG = 'something wrong',
 }

@@ -13,8 +13,6 @@ export class UpdateUserService {
     const user = await userRepository.findOne({
       where: { id },
     });
-    console.log(id);
-    console.log(user);
 
     if (!user) {
       console.log(`ERROR: ${errorMessages.CANNOT_FIND_USER} ${id}`);
@@ -34,7 +32,7 @@ export class UpdateUserService {
       user.password = hashedPassword;
     }
 
-    await userRepository.update(user, { ...user });
+    await userRepository.save(user);
 
     delete user.password;
 
