@@ -7,10 +7,10 @@ import { getRepository } from 'typeorm';
 import Appointment from '../typeorm/entities/Appointment';
 
 export class UpdateAppointmentService {
-  public async execute({ id, date, bearer }: IUpdateAppointment) {
+  public async execute({ id, date, userId }: IUpdateAppointment) {
     const appointmentRepository = getRepository(Appointment);
 
-    const appointment = await checkUserAppointment(id, bearer);
+    const appointment = await checkUserAppointment(id, userId);
 
     if (date) {
       appointment.date = date;

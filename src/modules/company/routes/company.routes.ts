@@ -41,7 +41,7 @@ companyRoutes.get('/:cnpj', ensureAuthenticated, async (req, res) => {
   return res.json(company);
 });
 
-companyRoutes.patch('/update/:id', async (req, res) => {
+companyRoutes.patch('/update/:id', ensureAuthenticated, async (req, res) => {
   const id = req.params.id;
   console.log(id);
   const { companyName, rentSeats, password }: ICompanyUpdateRequest = req.body;

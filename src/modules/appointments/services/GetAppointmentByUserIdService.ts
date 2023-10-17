@@ -3,8 +3,8 @@ import { getUser } from '../validators';
 import Appointment from '../typeorm/entities/Appointment';
 
 export class GetAppointmentByUser {
-  public async execute(bearer: string) {
-    const user = await getUser(bearer);
+  public async execute(userId: string) {
+    const user = await getUser(userId);
 
     const providerId = user.id;
 

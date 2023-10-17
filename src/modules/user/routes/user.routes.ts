@@ -37,7 +37,6 @@ userRoutes.post('/', async (req, res) => {
 userRoutes.get('/:email', ensureAuthenticated, async (req, res) => {
   const email = req.params.email;
   const token = req.headers.authorization;
-
   const getUser = new GetUserService();
   const user = await getUser.execute(email, token);
 

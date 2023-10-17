@@ -11,17 +11,17 @@ import { getCompany, getUser } from '../validators';
 
 interface ICreateAppointment {
   date: Date;
-  bearer: string;
+  userId: string;
 }
 
 export class CreateAppointmentService {
   public async execute({
     date,
-    bearer,
+    userId,
   }: ICreateAppointment): Promise<Appointment> {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-    const user = await getUser(bearer);
+    const user = await getUser(userId);
     const company = await getCompany(user.companyName);
 
     const userCompanyName = user.companyName;

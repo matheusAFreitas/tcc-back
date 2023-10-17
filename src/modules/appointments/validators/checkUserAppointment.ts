@@ -6,8 +6,8 @@ import { errorMessages } from '@shared/errors/errorMessagesEnum';
 import { getUser } from './getUser';
 import { GetAppointmentById } from '../services';
 
-export async function checkUserAppointment(id: string, bearer: string) {
-  const user = await getUser(bearer);
+export async function checkUserAppointment(id: string, userId: string) {
+  const user = await getUser(userId);
   const providerId = user.id;
 
   const getAppointment = new GetAppointmentById();
