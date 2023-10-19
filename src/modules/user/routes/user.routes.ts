@@ -6,6 +6,7 @@ import {
   ChangeUserAdminService,
   DeleteUserService,
   UpdateUserService,
+  GetUserByIdService,
 } from '../services';
 
 import { ensureAuthenticated } from '@shared/infra/http/middlewares';
@@ -34,11 +35,22 @@ userRoutes.post('/', async (req, res) => {
   }
 });
 
-userRoutes.get('/:email', ensureAuthenticated, async (req, res) => {
+userRoutes.get('/find/:email', ensureAuthenticated, async (req, res) => {
   const email = req.params.email;
   const token = req.headers.authorization;
   const getUser = new GetUserService();
   const user = await getUser.execute(email, token);
+
+  console.log('GET', user);
+  return res.json(user);
+});
+
+userRoutes.get('/get', ensureAuthenticated, async (req, res) => {
+  const userId = req.user.id;
+
+  const getUser = new GetUserByIdService();
+
+  const user = await getUser.execute(userId);
 
   console.log('GET', user);
   return res.json(user);
