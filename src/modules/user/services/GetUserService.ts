@@ -12,7 +12,7 @@ export class GetUserService {
   public async execute(email: string, token: string): Promise<IUserResponse> {
     const userRepository = getRepository(User);
 
-    await checkIsAdminValidator(token);
+    //await checkIsAdminValidator(token);
 
     const user = await userRepository.findOne({
       where: { email },
