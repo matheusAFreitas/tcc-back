@@ -17,7 +17,7 @@ export class GetAppointmentByUser {
 
     appointments.forEach((appointment) => {
       appointment.date = dayjs(appointment.date).format(
-        'YYYY-MM-DD'
+        'DD/MM/YYYY'
       ) as unknown as Date;
     });
 
